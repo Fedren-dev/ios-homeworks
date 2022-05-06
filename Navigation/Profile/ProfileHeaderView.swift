@@ -33,7 +33,7 @@ class ProfileHeaderView: UIView {
         return imageView
     } ()
     
-    private lazy var setStatusButton: UIButton = {
+    private var setStatusButton: UIButton = {
         
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -71,19 +71,6 @@ class ProfileHeaderView: UIView {
         textView.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return textView
     }()
-    
-    lazy var textField: UITextField = {
-        let fieldText = UITextField(frame: CGRect(x: 130, y: text.frame.maxY + 5 , width: 240, height: 40))
-      fieldText.text = ""
-      fieldText.backgroundColor = .white
-      fieldText.layer.cornerRadius = 12
-      fieldText.layer.borderWidth = 1
-      fieldText.layer.borderColor = UIColor.black.cgColor
-      fieldText.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-      fieldText.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-      return fieldText
-  }()
-    
     
     private var statusTextField: UITextField = {
         let textField = UITextField()
