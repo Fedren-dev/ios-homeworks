@@ -14,6 +14,8 @@
 		C988ED8427F8AF3D0089FBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C988ED8327F8AF3D0089FBE5 /* SceneDelegate.swift */; };
 		C988ED8B27F8AF3F0089FBE5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C988ED8A27F8AF3F0089FBE5 /* Assets.xcassets */; };
 		C988ED8E27F8AF3F0089FBE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C988ED8C27F8AF3F0089FBE5 /* LaunchScreen.storyboard */; };
+		C98B4CD5282634300098DE64 /* HexUIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B4CD42826342F0098DE64 /* HexUIColor.swift */; };
+		C98B4CD7282636130098DE64 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98B4CD6282636130098DE64 /* LoginViewController.swift */; };
 		C99A5C5B281D2B2400A3FD8A /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99A5C5A281D2B2400A3FD8A /* FeedViewController.swift */; };
 		C99A5C5F281D317E00A3FD8A /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99A5C5E281D317E00A3FD8A /* PostViewController.swift */; };
 		C99A5C61281D3BCD00A3FD8A /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99A5C60281D3BCD00A3FD8A /* InfoViewController.swift */; };
@@ -30,6 +32,8 @@
 		C988ED8A27F8AF3F0089FBE5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C988ED8D27F8AF3F0089FBE5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C988ED8F27F8AF3F0089FBE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C98B4CD42826342F0098DE64 /* HexUIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexUIColor.swift; sourceTree = "<group>"; };
+		C98B4CD6282636130098DE64 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C99A5C5A281D2B2400A3FD8A /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		C99A5C5E281D317E00A3FD8A /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		C99A5C60281D3BCD00A3FD8A /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
@@ -52,6 +56,8 @@
 			children = (
 				C94A597B28210DC90028EE33 /* ProfileViewController.swift */,
 				C94A597928210D830028EE33 /* ProfileHeaderView.swift */,
+				C98B4CD6282636130098DE64 /* LoginViewController.swift */,
+				C98B4CD42826342F0098DE64 /* HexUIColor.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -163,12 +169,14 @@
 				C99A5C5F281D317E00A3FD8A /* PostViewController.swift in Sources */,
 				C98828F92813EDB80071930A /* MainTabBarViewController.swift in Sources */,
 				C988ED8227F8AF3D0089FBE5 /* AppDelegate.swift in Sources */,
+				C98B4CD5282634300098DE64 /* HexUIColor.swift in Sources */,
 				C988ED8427F8AF3D0089FBE5 /* SceneDelegate.swift in Sources */,
 				C94A597C28210DC90028EE33 /* ProfileViewController.swift in Sources */,
 				C99A5C63281D432300A3FD8A /* PostStruct.swift in Sources */,
 				C94A597A28210D830028EE33 /* ProfileHeaderView.swift in Sources */,
 				C99A5C61281D3BCD00A3FD8A /* InfoViewController.swift in Sources */,
 				C99A5C5B281D2B2400A3FD8A /* FeedViewController.swift in Sources */,
+				C98B4CD7282636130098DE64 /* LoginViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

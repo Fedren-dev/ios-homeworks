@@ -11,6 +11,8 @@ class MainTabBarViewController: UITabBarController {
     
     let userFeedVC = FeedViewController()
     let profileVC = ProfileViewController()
+    
+    let loginVC = LogInViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,14 +22,14 @@ class MainTabBarViewController: UITabBarController {
     
     private func setupControllers() {
         let userFeedNC = UINavigationController(rootViewController: userFeedVC)
-        userFeedVC.tabBarItem.title = "Feed"
+        userFeedVC.tabBarItem.title = "Лента"
         userFeedVC.tabBarItem.image = UIImage(systemName: "newspaper")
         userFeedVC.navigationItem.title = "Feed"
         
-        let profileNC = UINavigationController(rootViewController: profileVC)
-        profileVC.tabBarItem.title = "Profile"
-        profileVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
-        profileVC.navigationItem.title = "Profile"
+        let profileNC = UINavigationController(rootViewController: loginVC)
+        loginVC.tabBarItem.title = "Профиль"
+        loginVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
+        loginVC.navigationItem.title = "Profile"
 
         
         viewControllers = [userFeedNC, profileNC]
