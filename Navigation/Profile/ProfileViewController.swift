@@ -12,7 +12,7 @@ class ProfileViewController: UIViewController {
     private var post = PostModel.makePostModel()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
         tableView.delegate = self
@@ -68,8 +68,7 @@ extension ProfileViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-        }
-        return 220
+        return section == 0 ? 200:0
     }
+    
 }

@@ -71,16 +71,20 @@ class ProfileHeaderView: UIView {
     }()
     
     private var statusTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.text = ""
-        textField.backgroundColor = .white
-        textField.layer.cornerRadius = 12
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        textField.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
-        return textField
+        let fieldText = UITextField()
+        fieldText.translatesAutoresizingMaskIntoConstraints = false
+        fieldText.text = ""
+        fieldText.placeholder = "Set something"
+        fieldText.backgroundColor = .white
+        fieldText.layer.cornerRadius = 12
+        fieldText.layer.borderWidth = 1
+        fieldText.layer.borderColor = UIColor.black.cgColor
+        fieldText.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+        fieldText.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: fieldText.frame.height))
+        fieldText.leftViewMode = .always
+        
+        fieldText.addTarget(self, action: #selector(statusTextChanged), for: .editingChanged)
+        return fieldText
     }()
     
     @objc private func buttonStatus() {
