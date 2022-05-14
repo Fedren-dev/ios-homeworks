@@ -5,56 +5,70 @@
 //  Created by Alexander Fedorov on 03.05.2022.
 //
 
-import Foundation
 import UIKit
 
 class ProfileViewController: UIViewController {
     
-    let profileHeaderView = ProfileHeaderView()
+    private var post = PostModel.makePostModel()
     
-    let newButton: UIButton = {
-        let buttonNew = UIButton()
-        buttonNew.setTitle("NewPost", for: .normal)
-        buttonNew.backgroundColor = .systemBlue
-        return buttonNew
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.separatorInset = .zero
+        tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.indentifire)
+        return tableView
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupAutoLayuot()
-        setupNavigationController()
+        layout ()
     }
     
-    private func setupNavigationController() {
-        
-        let navigationBar = UINavigationBarAppearance()
-        navigationBar.backgroundColor = .white
-        self.navigationController?.navigationBar.standardAppearance = navigationBar
-        self.navigationController?.navigationBar.scrollEdgeAppearance = navigationBar
-        view.backgroundColor = .lightGray
-    }
-    
-    private func setupAutoLayuot() {
-        
-        view.addSubview(profileHeaderView)
-        view.addSubview(newButton)
-        
-        profileHeaderView.translatesAutoresizingMaskIntoConstraints.self = false
-        newButton.translatesAutoresizingMaskIntoConstraints.self = false
-        
+    private func layout () {
+        view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            
-            
-            profileHeaderView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            profileHeaderView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            profileHeaderView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            profileHeaderView.heightAnchor.constraint(equalToConstant: 220),
-            
-            
-            newButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            newButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            newButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            newButton.heightAnchor.constraint(equalToConstant: 40)
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor)
         ])
     }
+}
+
+// MARK: - UITableViewDataSource
+
+extension ProfileViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int ) -> Int {
+        return post.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.indentifire, for: indexPath) as! PostTableViewCell
+        cell.setupCell(post[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+
+extension ProfileViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return UITableView.automaticDimension   // автоматические размеры - условия элементы должны быть четко привязанны и к верху и к низу
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let profileHeaderView = ProfileHeaderView()
+        profileHeaderView.backgroundColor = .systemGray6
+        return profileHeaderView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 200:0
+    }
+    
 }
