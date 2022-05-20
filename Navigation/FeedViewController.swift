@@ -8,8 +8,6 @@
 import UIKit
 
 class FeedViewController: UIViewController {
-    
-    var post = Post(title: "Мой пост")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +15,7 @@ class FeedViewController: UIViewController {
         stackVc()
     }
     
-    private let stackView: UIStackView = {
+    private lazy var stackView: UIStackView = {
         let viewStack = UIStackView()
         viewStack.translatesAutoresizingMaskIntoConstraints = false
         viewStack.axis = .vertical
@@ -26,7 +24,7 @@ class FeedViewController: UIViewController {
         return viewStack
     }()
     
-    private var setButton: UIButton = {
+    private lazy var setButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemMint
@@ -42,7 +40,7 @@ class FeedViewController: UIViewController {
         navigationController?.pushViewController(postViewController, animated: true)
     }
     
-    private var viewButton: UIButton = {
+    private lazy var viewButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue

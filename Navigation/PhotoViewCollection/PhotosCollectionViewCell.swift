@@ -14,6 +14,7 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         galleryImage .translatesAutoresizingMaskIntoConstraints = false
         galleryImage .contentMode = .scaleAspectFill
         galleryImage .clipsToBounds = true
+        galleryImage.layer.cornerRadius = 6
         return galleryImage
     }()
     

@@ -40,14 +40,12 @@ class ProfileHeaderView: UIView {
     }()
     
     private lazy var setStatusButton: UIButton = {
-        
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .systemBlue
         button.setTitle("Set status", for: .normal)
         button.layer.cornerRadius = 4
         button.titleLabel?.textColor = UIColor.systemRed
-        
         button.layer.shadowOffset = CGSize(width: 4, height: 4)
         button.layer.shadowOpacity = 0.7
         button.layer.shadowColor = UIColor.black.cgColor
@@ -125,28 +123,32 @@ class ProfileHeaderView: UIView {
     // MARK: - Animation  добавляю функционал анимации
     
     private func setupGestures() {
-        let tapGesture = UIGestureRecognizer(target: self, action: #selector(tapAction))
+        let tapGesture = UITapGestureRecognizer (target: self, action: #selector(tapAction))
         avatarImageView.addGestureRecognizer(tapGesture)
     }
     
-    @objc private func tapAction() {
+    @objc private func tapAction(){
         
         UIView.animate(withDuration: 0.5,
                        delay: 0.0,
                        usingSpringWithDamping: 1.0,
                        initialSpringVelocity: 0.0,
                        options: .curveEaseInOut) {
+
+            
             self.avatarImageView.layer.position = CGPoint(x: UIScreen.main.bounds.midX, y: UIScreen.main.bounds.midY)
             self.avatarImageView.layer.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
             self.blackView.layer.opacity = 0.8
             self.avatarImageView.layer.cornerRadius = 0
             self.layoutIfNeeded()
+
         } completion: { _ in
             UIView.animate(withDuration: 0.3,
                            delay: 0.0) {
-                self.cancelAnimationButton.layer.opacity = 1
+            self.cancelAnimationButton.layer.opacity = 1
             }
         }
+
     }
     
     @objc private func pressCancelAnimationButton() {
@@ -174,7 +176,7 @@ class ProfileHeaderView: UIView {
         
         NSLayoutConstraint.activate([
             
-            avatarImageView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 16),
+            avatarImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
             avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16),
             avatarImageView.widthAnchor.constraint(equalToConstant: 110),
             avatarImageView.heightAnchor.constraint(equalToConstant: 110),
