@@ -128,10 +128,6 @@ class LogInViewController: UIViewController {
     }
     
     
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         notificationCenter.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -185,5 +181,15 @@ extension LogInViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         view.endEditing(true)
         return true
+    }
+    func hideKeyboardTapperAround() {
+        
+        let press: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+        press.cancelsTouchesInView = false
+        view.addGestureRecognizer(press)
+    }
+    @objc func dismissKeyboard(){
+    
+        view.endEditing(true)
     }
 }
