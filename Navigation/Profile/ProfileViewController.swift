@@ -9,8 +9,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
-    private var post = PostModel.makePostModel()
-    private var imageModel = ImageModel.addImage()
+    private lazy var post = PostModel.makePostModel()
+    private lazy var imageModel = ImageModel.addImage()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)

@@ -23,14 +23,14 @@ class LogInViewController: UIViewController {
         passwordTextField.delegate = self
     }
     
-    private let logoImageView: UIImageView = {
+    private lazy var logoImageView: UIImageView = {
         let logoIV = UIImageView(image: UIImage(named: "logo"))
         logoIV.translatesAutoresizingMaskIntoConstraints = false
         logoIV.layer.borderColor = UIColor.lightGray.cgColor
         return logoIV
     }()
     
-    private let stackViewLoginPassword: UIStackView = {
+    private lazy var stackViewLoginPassword: UIStackView = {
         let loginPasswordSV = UIStackView()
         loginPasswordSV.translatesAutoresizingMaskIntoConstraints = false
         loginPasswordSV.axis = .vertical
@@ -44,7 +44,7 @@ class LogInViewController: UIViewController {
         return loginPasswordSV
     }()
     
-    private var logTextField: UITextField = {
+    private lazy var logTextField: UITextField = {
         let logTextField = UITextField()
         logTextField.translatesAutoresizingMaskIntoConstraints = false
         logTextField.placeholder = "Email or phone"
@@ -61,7 +61,7 @@ class LogInViewController: UIViewController {
         return logTextField
     }()
     
-    private var passwordTextField: UITextField = {
+    private lazy var passwordTextField: UITextField = {
         let passTextField = UITextField()
         passTextField.translatesAutoresizingMaskIntoConstraints = false
         passTextField.placeholder = "Password"
@@ -78,7 +78,7 @@ class LogInViewController: UIViewController {
         return passTextField
     }()
     
-    private var loginButton: UIButton = {
+    private lazy var loginButton: UIButton = {
         let loginButton = UIButton()
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         loginButton.backgroundColor = UIColor(hexString: "#4885CC")
@@ -96,13 +96,13 @@ class LogInViewController: UIViewController {
         navigationController?.pushViewController(profileVC, animated: true)
     }
     
-    private let scrollView: UIScrollView = {
+    private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         return scrollView
     }()
     
-    private let contentView: UIView = {
+    private lazy var contentView: UIView = {
         let contenttView = UIView()
         contenttView.translatesAutoresizingMaskIntoConstraints = false
         contenttView.backgroundColor = .white

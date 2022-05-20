@@ -115,8 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				C99A5C62281D432300A3FD8A /* PostStruct.swift */,
-				C99A5C5E281D317E00A3FD8A /* PostViewController.swift */,
 				C98E8FF2282B7DF5003A2E09 /* PostModel.swift */,
+				C99A5C5E281D317E00A3FD8A /* PostViewController.swift */,
 				C98E8FF4282B80DF003A2E09 /* PostTableViewCell.swift */,
 				C98E8FF6282B81F3003A2E09 /* UIView+Extension.swift */,
 				C98B4CD42826342F0098DE64 /* HexUIColor.swift */,
