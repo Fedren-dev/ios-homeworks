@@ -11,12 +11,12 @@ class MainTabBarViewController: UITabBarController {
     
     let userFeedVC = FeedViewController()
     let profileVC = ProfileViewController()
-    
     let loginVC = LogInViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupControllers()
+        setupNavigationController()
 
     }
     
