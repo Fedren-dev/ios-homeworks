@@ -27,7 +27,6 @@ class InfoViewController: UIViewController {
     @objc private func tapAction() {
         let alert = UIAlertController(title: "Перейти назад", message: "Вы точно хотите выйти?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Выйти", style: .default) { _ in
-            print("Выводится сообщение")
             self.dismiss(animated: true)
         }
         let cancelAction = UIAlertAction(title: "Отмена", style: .destructive)

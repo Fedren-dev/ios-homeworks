@@ -11,13 +11,12 @@ class MainTabBarViewController: UITabBarController {
     
     let userFeedVC = FeedViewController()
     let profileVC = ProfileViewController()
-    
     let loginVC = LogInViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupControllers()
-
+        setupNavigationController()
     }
     
     private func setupControllers() {
@@ -29,9 +28,17 @@ class MainTabBarViewController: UITabBarController {
         let profileNC = UINavigationController(rootViewController: loginVC)
         loginVC.tabBarItem.title = "Профиль"
         loginVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
-        loginVC.navigationItem.title = "Profile"
+        // loginVC.navigationItem.title = "Profile"
 
         
         viewControllers = [userFeedNC, profileNC]
+    }
+    
+    private func setupNavigationController() {
+        let navBar = UINavigationBarAppearance()
+        navBar.backgroundColor = .white
+        self.navigationController?.navigationBar.standardAppearance = navBar
+        self.navigationController?.navigationBar.scrollEdgeAppearance = navBar
+        view.backgroundColor = .white
     }
 }
