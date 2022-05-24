@@ -10,15 +10,17 @@ import UIKit
 
 class LogInViewController: UIViewController {
     
+    private lazy var login = "admin"
+    private lazy var password = "admin"
+    
     private let notificationCenter = NotificationCenter.default
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         navigationController?.navigationBar.isHidden = true
-        
         setupLayout()
-        
+        hideKeyboardTapperAround()
         logTextField.delegate = self
         passwordTextField.delegate = self
     }
@@ -85,15 +87,64 @@ class LogInViewController: UIViewController {
         loginButton.tintColor = .white
         loginButton.setTitle("Log In", for: .normal)
         loginButton.layer.cornerRadius = 10
-        
         loginButton.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
-        
         return loginButton
     }()
     
-    @objc private func tapAction(sender: UIButton) {
-        let profileVC = ProfileViewController()
-        navigationController?.pushViewController(profileVC, animated: true)
+    private lazy var alertLabel: UILabel = {
+        let labelAlert = UILabel()
+        labelAlert.translatesAutoresizingMaskIntoConstraints = false
+        labelAlert.text = "Внимание! Пароль слишком короткий"
+        labelAlert.font = UIFont.systemFont(ofSize: 10, weight: .regular)
+        labelAlert.textColor = .red
+        labelAlert.textAlignment = .center
+        labelAlert.isHidden = true
+        return labelAlert
+    }()
+    
+    @objc private func tapAction() {
+        // проверка логина и пароля на пустоту
+        if logTextField.text == login && passwordTextField.text == password {
+            let profileVC = ProfileViewController()
+            navigationController?.pushViewController(profileVC, animated: true)
+        } else {
+            if logTextField.text == "" || passwordTextField.text == "" {
+                let animation = CABasicAnimation(keyPath: "position")
+                animation.duration = 0.1
+                animation.repeatCount = 2
+                animation.autoreverses = true
+                animation.fromValue = NSValue(cgPoint: CGPoint(x:stackViewLoginPassword.center.x - 5, y: stackViewLoginPassword.center.y))
+                animation.toValue = NSValue(cgPoint: CGPoint(x: stackViewLoginPassword.center.x + 5, y: stackViewLoginPassword.center.y))
+                stackViewLoginPassword.layer.add(animation, forKey: "position")
+                
+                logTextField.attributedPlaceholder = NSAttributedString (string: logTextField.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor:UIColor.red])
+                passwordTextField.attributedPlaceholder = NSAttributedString (string: passwordTextField.placeholder ?? "", attributes: [NSAttributedString.Key.foregroundColor:UIColor.red])
+            } else {
+                stackViewLoginPassword.layer.removeAnimation(forKey: "position")
+            }
+            // проверка пароля на длинну
+            if passwordTextField.text!.count < 4 && passwordTextField.text != "" {
+                alertLabel.isHidden = false
+                _ = Timer.scheduledTimer(timeInterval: 6, target: self, selector: #selector(alertTimer), userInfo: nil, repeats: false)
+                return
+            } else {
+                alertLabel.isHidden = true
+            }
+            if logTextField.text != login && logTextField.text != "" || passwordTextField.text != password && passwordTextField.text != "" {
+                let alertController = UIAlertController()
+                alertController.title = "Неправильно введен логин или пароль"
+                alertController.message = "Пожалуйста, проверьте правильность введеных данных и попробуйте еще раз"
+                
+                let okAction = UIAlertAction(title: "Выйти", style: .default)
+                alertController.addAction(okAction)
+                
+                present(alertController,animated: true)
+            }
+        }
+    }
+    // таймер на появление alertLabel
+    @objc private func alertTimer() {
+        alertLabel.isHidden = true
     }
     
     private lazy var scrollView: UIScrollView = {
@@ -137,12 +188,12 @@ class LogInViewController: UIViewController {
     
     private func setupLayout() {
         view.addSubview(scrollView)
-        
         scrollView.addSubview(contentView)
-        
         contentView.addSubview(logoImageView)
         contentView.addSubview(loginButton)
         contentView.addSubview(stackViewLoginPassword)
+        
+        contentView.addSubview(alertLabel)
         
         [logTextField, passwordTextField].forEach {stackViewLoginPassword.addArrangedSubview($0)}
         
@@ -151,6 +202,11 @@ class LogInViewController: UIViewController {
             stackViewLoginPassword.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             stackViewLoginPassword.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stackViewLoginPassword.heightAnchor.constraint(equalToConstant: 100),
+            
+            alertLabel.topAnchor.constraint(equalTo: stackViewLoginPassword.bottomAnchor, constant: 1),
+            alertLabel.leadingAnchor.constraint(equalTo: stackViewLoginPassword.leadingAnchor),
+            alertLabel.trailingAnchor.constraint(equalTo: stackViewLoginPassword.trailingAnchor),
+            alertLabel.bottomAnchor.constraint(equalTo: loginButton.topAnchor, constant: -1),
             
             logoImageView.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 120),
             logoImageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -182,14 +238,14 @@ extension LogInViewController: UITextFieldDelegate {
         view.endEditing(true)
         return true
     }
+    
     func hideKeyboardTapperAround() {
-        
         let press: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
         press.cancelsTouchesInView = false
         view.addGestureRecognizer(press)
     }
-    @objc func dismissKeyboard(){
     
+    @objc func dismissKeyboard(){
         view.endEditing(true)
     }
 }
