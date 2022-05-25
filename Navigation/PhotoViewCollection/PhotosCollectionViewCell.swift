@@ -9,6 +9,8 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
+    weak var buttonAllPhotoCellDelegate: PhotoCellDelegate?
+    
     private let galleryImages: UIImageView = {
         let galleryImage = UIImageView()
         galleryImage .translatesAutoresizingMaskIntoConstraints = false
@@ -21,10 +23,21 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         imageLayout()
+        setupGestures()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func setupGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(photoAction))
+        galleryImages.addGestureRecognizer(tapGesture)
+        galleryImages.isUserInteractionEnabled = true
+    }
+    
+    @objc private func photoAction() {
+        buttonAllPhotoCellDelegate?.tapAction(photo: galleryImages.image!)
     }
     
     // добавляю метод показа фото
@@ -43,4 +56,9 @@ class PhotosCollectionViewCell: UICollectionViewCell {
             galleryImages.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
     }
+}
+
+protocol PhotoCellDelegate: AnyObject {
+    func  tapAction(photo: UIImage)
+    func  cancelAnimationButton()
 }
