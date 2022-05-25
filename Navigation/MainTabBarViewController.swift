@@ -20,12 +20,12 @@ class MainTabBarViewController: UITabBarController {
     }
     
     private func setupControllers() {
-        let userFeedNC = UINavigationController(rootViewController: userFeedVC)
+        lazy var userFeedNC = UINavigationController(rootViewController: userFeedVC)
         userFeedVC.tabBarItem.title = "Лента"
         userFeedVC.tabBarItem.image = UIImage(systemName: "newspaper")
         userFeedVC.navigationItem.title = "Feed"
         
-        let profileNC = UINavigationController(rootViewController: loginVC)
+        lazy var profileNC = UINavigationController(rootViewController: loginVC)
         loginVC.tabBarItem.title = "Профиль"
         loginVC.tabBarItem.image = UIImage(systemName: "person.crop.circle.fill")
         // loginVC.navigationItem.title = "Profile"

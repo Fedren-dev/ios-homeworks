@@ -25,7 +25,7 @@ class PhotosTableViewCell: UITableViewCell {
         viewCollection.translatesAutoresizingMaskIntoConstraints = false
         viewCollection.dataSource = self
         viewCollection.delegate = self
-        viewCollection.register(PhotosCollectionViewCellForTableView.self, forCellWithReuseIdentifier: PhotosCollectionViewCellForTableView.indentifire)
+        viewCollection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.indentifire)
         return viewCollection
     }()
     
@@ -98,7 +98,7 @@ extension PhotosTableViewCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCellForTableView.indentifire, for: indexPath) as! PhotosCollectionViewCellForTableView
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.indentifire, for: indexPath) as! PhotosCollectionViewCell
         cell.setupImageModel(imageModel[indexPath.item])
         return cell
     }
@@ -129,3 +129,4 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
         print(indexPath.section, indexPath.item)
     }
 }
+
